@@ -15,5 +15,5 @@
     "expo-env.d.ts",
     "app/index.jsx",
     "nativewind-env.d.ts"
-, "app/+not-found.jsx", "app/_layout.jsx"  ]
+, "app/+not-found.jsx", "app/_layout.jsx", "app/(root)/(tabs)/hellow.jsx", "app/(root)/(tabs)/_layout.jsx", "app/(root)/(tabs)/notification.jsx"  ]
 }
