@@ -37,6 +37,14 @@ const Profile = () => {
 
   return (
     <View className="flex-1 items-center bg-gray-100 p-6 mt-9">
+      {/* Header with Back Button and Title */}
+      <View className="flex-row items-center mb-6 w-full">
+        <TouchableOpacity onPress={() => router.back()} className="mr-4">
+          <MaterialIcons name="arrow-back" size={24} color="blue" />
+        </TouchableOpacity>
+        <Text className="text-3xl font-bold flex-1 text-center">Profile</Text>
+      </View>
+
       {/* Avatar and Edit Button Section */}
       <View className="relative mb-6">
         <Image
@@ -45,7 +53,7 @@ const Profile = () => {
         />
         {/* Edit Button Positioned at Bottom Right of Avatar */}
         <Pressable
-   onPress={() => router.push('editposts')}
+          onPress={() => router.push('editposts')}
           className="absolute bottom-0 right-0 bg-blue-500 p-2 rounded-full"
         >
           <MaterialIcons name="edit" size={24} color="white" />

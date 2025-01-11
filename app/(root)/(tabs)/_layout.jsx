@@ -6,6 +6,7 @@ export default function Layout() {
     <Stack>
       {/* Ensure the screen name matches the file name */}
       <Stack.Screen name="hellow" options={{ headerShown: false }} />
+      <Stack.Screen name="profile" options={{ headerShown: false }} />
       <Stack.Screen name="editposts" options={{ headerShown: false }} />
     </Stack>
   );
