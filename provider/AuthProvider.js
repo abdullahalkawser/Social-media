@@ -1,5 +1,5 @@
+import { supabase } from "@/lib/supabase";
 import { createContext, useContext, useEffect, useState } from "react";
-import { supabase } from "./../lib/supabase";
 
 const AuthContext = createContext();
 
@@ -15,12 +15,11 @@ export const AuthProvider = ({ children }) => {
     });
 
     // Listen for auth state changes
-    const { data: subscription } = supabase.auth.onAuthStateChange(
+    const { data: authListener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         if (session?.user) {
           setUser(session.user);
         } else {
-          console.log("User signed out");
           setUser(null);
         }
       }
@@ -28,27 +27,12 @@ export const AuthProvider = ({ children }) => {
 
     // Cleanup subscription on unmount
     return () => {
-      if (subscription) {
-        subscription.unsubscribe();
-      }
+      authListener?.subscription?.unsubscribe();
     };
   }, []);
 
-  // Function to manually set auth data
-  const setAuth = (authUser) => {
-    setUser(authUser);
-  };
-
-  // Function to manually set user data
-  const setUserData = (userData) => {
-    setUser((prev) => ({
-      ...prev,
-      ...userData,
-    }));
-  };
-
   return (
-    <AuthContext.Provider value={{ user, setAuth, setUserData }}>
+    <AuthContext.Provider value={{ user }}>
       {children}
     </AuthContext.Provider>
   );

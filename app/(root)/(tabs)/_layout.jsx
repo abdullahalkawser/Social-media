@@ -1,14 +1,12 @@
 import React from 'react';
-
 import { Stack } from 'expo-router';
-
-
 
 export default function Layout() {
   return (
     <Stack>
-     
-        <Stack.Screen name="hellow" options={{ headerShown: false }} />
+      {/* Ensure the screen name matches the file name */}
+      <Stack.Screen name="hellow" options={{ headerShown: false }} />
+      <Stack.Screen name="editposts" options={{ headerShown: false }} />
     </Stack>
   );
 }

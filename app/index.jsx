@@ -4,20 +4,22 @@ import { useAuth } from '@/provider/AuthProvider';
 import "../global.css";
 
 const Index = () => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
-  useEffect(() => {
-    if (user) {
-      // If the user is authenticated, redirect to the home page
-      <Redirect href="/(root)/(tabs)/hellow" />;
-    } else {
-      // If the user is not authenticated, redirect to the welcome page
-      <Redirect href="/(auth)/welcome" />;
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     // If the user is authenticated, redirect to the home page
+  //     <Redirect href="/(root)/(tabs)/hellow" />;
+  //   } else {
+    // <Redirect href="/(auth)/welcome" />;
+  //     // If the user is not authenticated, redirect to the welcome page
+      
+  //   }
+  // }, [user]);
 
   // Optionally, you can return a loading state here if needed
-  return null; // Render nothing or a loading spinner
+  return     <Redirect href="/(root)/(tabs)/hellow" />;
+
 };
 
 export default Index;
