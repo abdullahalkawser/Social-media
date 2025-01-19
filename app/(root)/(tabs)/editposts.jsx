@@ -5,6 +5,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useAuth } from '@/provider/AuthProvider';
+import { updateUserData } from '../../api/userService';
+
 
 const Edit = () => {
   const router = useRouter();
@@ -38,28 +40,28 @@ const Edit = () => {
   };
 
   const handleSubmit = async () => {
-    const { name, phone, address } = formData; // Destructure directly from formData
+    const { name, phone, address } = formData;
 
     // Check if required fields are filled
     if (!name || !phone || !address) {
-      Alert.alert('Please fill in all fields');
-      return; // Prevent submission if any field is empty
+      Alert.alert('Error', 'Please fill in all fields');
+      return;
     }
 
-  
+    setIsLoading(true); // Show loading spinner
 
-    setIsLoading(true); // Set loading state to true
+    try {
+      // Call the updateUserData function with userId and updated data
+      await updateUserData(currentUser.id, formData);
 
-    // You can now proceed with form submission logic, like an API call to update the user
-    const userdata = { ...formData };
-    console.log('Form data:', userdata);
-
-    // Simulate an API call with a timeout
-    setTimeout(() => {
-      setIsLoading(false); // Set loading state to false after the call
-      Alert.alert('Profile updated successfully');
-      router.back(); // Navigate back after successful update
-    }, 2000); // Simulate a 2-second delay
+      Alert.alert('Success', 'Profile updated successfully');
+      router.back(); // Navigate back on successful update
+    } catch (error) {
+      Alert.alert('Error', 'Failed to update profile. Please try again later.');
+      console.error('Update error:', error);
+    } finally {
+      setIsLoading(false); // Hide loading spinner
+    }
   };
 
   // Placeholder avatar image

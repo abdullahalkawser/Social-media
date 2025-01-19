@@ -18,7 +18,7 @@ const Index = () => {
   // }, [user]);
 
   // Optionally, you can return a loading state here if needed
-  return     <Redirect href="/(root)/(tabs)/hellow" />;
+  return     <Redirect href="/(auth)/welcome" />;
 
 };
 

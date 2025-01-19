@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  console.log(user)
 
   useEffect(() => {
     // Fetch initial session and set the user
@@ -18,6 +19,7 @@ export const AuthProvider = ({ children }) => {
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         if (session?.user) {
+          console.log(user)
           setUser(session.user);
         } else {
           setUser(null);
